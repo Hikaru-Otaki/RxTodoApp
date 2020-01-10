@@ -1,0 +1,6 @@
+framework module Pods_RxTodoAppTests {
+  umbrella header "Pods-RxTodoAppTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

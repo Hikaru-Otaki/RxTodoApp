@@ -1,0 +1,6 @@
+framework module Pods_RxTodoApp_RxTodoAppUITests {
+  umbrella header "Pods-RxTodoApp-RxTodoAppUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
