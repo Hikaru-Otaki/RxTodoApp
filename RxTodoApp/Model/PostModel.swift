@@ -1,5 +1,5 @@
 //
-//  PostRepository.swift
+//  PostModel.swift
 //  RxTodoApp
 //
 //  Created by 大瀧輝 on 2020/01/10.
@@ -7,12 +7,12 @@
 //
 
 import Foundation
-import RxSwift
 import Firebase
+import RxSwift
 
-class PostRepository {
-    let db: Firestore
+class PostModel {
     
+    let db: Firestore
     var listener: ListenerRegistration?
     
     init() {
@@ -57,10 +57,12 @@ class PostRepository {
                     var posts: [Post] = []
                     if !snap.isEmpty {
                         for item in snap.documents {
+                            let timeStamp: Timestamp = item["date"] as! Timestamp
+                            let date: Date = timeStamp.dateValue()
                             posts.append(Post(id: item.documentID,
                                               user: item["user"] as! String,
                                               content: item["content"] as! String,
-                                              date: item["date"] as! Date)
+                                              date: date)
                             )
                         }
                     }
