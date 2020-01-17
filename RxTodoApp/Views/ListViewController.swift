@@ -10,19 +10,20 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SVProgressHUD
+import Firebase
 
 class ListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: UIBarButtonItem!
-    @IBOutlet weak var navBar: UINavigationBar!
     
     var listViewModel: ListViewModel!
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        let authModel = AuthModel()
+//        authModel.signout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,9 +36,7 @@ class ListViewController: UIViewController {
         listViewModel = ListViewModel()
         let input = ListViewModel.Input(trigger: Observable.just(()))
         let output = listViewModel.transform(input: input)
-        
-//        listViewModel.isAnimating.bind(to: SVProgressHUD.rx.isAnimating).disposed(by: disposeBag)
-                
+                        
         output.posts.bind(to: tableView.rx.items(cellIdentifier: "cell")) {row,element,cell in
             cell.textLabel?.text = element.content
             cell.detailTextLabel?.text = element.id

@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import SVProgressHUD
+import Firebase
 
 class ListViewModel: ViewModelType {
    
@@ -25,6 +26,7 @@ class ListViewModel: ViewModelType {
     
     struct State {
         let indicator = ActivityIndicator()
+//        let user: Observable<FirebaseAuth.User>
     }
     
     private let postModel = PostModel()
@@ -32,9 +34,14 @@ class ListViewModel: ViewModelType {
     
     func transform(input: ListViewModel.Input) -> ListViewModel.Output {
         let state = State()
-        let load = input.trigger.flatMap { [unowned self] _ -> Observable<[Post]> in
-            return self.postModel.read().trackActivity(state.indicator)
+        let load = input.trigger.flatMap { [unowned self] _ in
+            return self.authModel.checkLogin()
+        }.flatMap { [unowned self] user in
+            return self.postModel.read(uid: user.uid).trackActivity(state.indicator)
         }
+//        let load = input.trigger.flatMap { [unowned self] _ -> Observable<[Post]> in
+//            return self.postModel.read(uid: ).trackActivity(state.indicator)
+//        }
         
         
         let currentUser = self.authModel.checkLogin().map { _ in true }.asDriver(onErrorJustReturn: false )

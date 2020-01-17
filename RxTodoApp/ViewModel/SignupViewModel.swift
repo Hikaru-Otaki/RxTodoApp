@@ -37,8 +37,6 @@ class SignupViewModel: ViewModelType {
                 return self.authModel.signUp(with: email, and: password)
                     .do(onNext: { _ in
                         self.navigator.toList()
-                    }, onError: { error in
-                        print(error)
                     })
         }
         return Output(login: login)

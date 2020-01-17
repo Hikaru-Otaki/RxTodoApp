@@ -22,7 +22,7 @@
                                         <barButtonItem key="leftBarButtonItem" image="person.circle" catalog="system" id="GVB-JK-VDB"/>
                                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="XH7-av-X0T">
                                             <connections>
-                                                <segue destination="ULK-fh-6Zw" kind="presentation" id="NRP-cq-UFb"/>
+                                                <segue destination="ULK-fh-6Zw" kind="presentation" id="xdK-MH-WJV"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -60,7 +60,6 @@
                     <navigationItem key="navigationItem" id="hrT-pM-Qen"/>
                     <connections>
                         <outlet property="addButton" destination="XH7-av-X0T" id="JdK-9V-nqB"/>
-                        <outlet property="navBar" destination="kau-UY-FTG" id="y5Y-OF-UPs"/>
                         <outlet property="tableView" destination="Ssb-xN-P7a" id="w6T-Bw-iDO"/>
                     </connections>
                 </viewController>
