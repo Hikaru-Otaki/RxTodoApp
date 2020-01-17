@@ -9,12 +9,14 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SVProgressHUD
 
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var goToSignupButton: UIButton!
     
     var authModel: AuthModel!
     
@@ -28,12 +30,16 @@ class LoginViewController: UIViewController {
     
     func bind() {
         let loginViewModel = LoginViewModel(with: AuthModel(), and: LoginNavigator(with: self))
+        
         let input = LoginViewModel.Input(password: passwordTextField.rx.text.orEmpty.asObservable(), email: emailTextField.rx.text.orEmpty.asObservable(), trigger: loginButton.rx.tap.asObservable())
         
         let output = loginViewModel.transform(input: input)
+        
         output.login.subscribe(onError: { _ in
             self.showLoginErrorAlert()
             }).disposed(by: disposeBag)
+        
+        output.isLoading.drive(SVProgressHUD.rx.isAnimating).disposed(by: disposeBag)
     }
     
     func showLoginErrorAlert() {

@@ -14,13 +14,12 @@ import SVProgressHUD
 class ListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    @IBOutlet weak var navBar: UINavigationBar!
     
     var listViewModel: ListViewModel!
     let disposeBag = DisposeBag()
     
-    var addButton: UIBarButtonItem!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,6 +43,8 @@ class ListViewController: UIViewController {
             cell.detailTextLabel?.text = element.id
         }
         .disposed(by: disposeBag)
+        
+        output.addTrigger.drive(addButton.rx.isEnabled).disposed(by: disposeBag)
     }
     
 }

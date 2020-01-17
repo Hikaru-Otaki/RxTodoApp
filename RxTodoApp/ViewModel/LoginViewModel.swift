@@ -20,6 +20,11 @@ class LoginViewModel: ViewModelType {
 
     struct Output {
         let login: Observable<User>
+        let isLoading: Driver<Bool>
+    }
+    
+    struct State {
+        let isLoading = ActivityIndicator()
     }
     
     private let authModel: AuthModel
@@ -29,27 +34,21 @@ class LoginViewModel: ViewModelType {
         self.authModel = authModel
         self.navigator = navigator
     }
-
-//    func transform(input: LoginViewModel.Input) -> LoginViewModel.Output {
-//        let requiredInputs = Observable.combineLatest(input.email, input.password)
-//        let login = input.trigger.withLatestFrom(requiredInputs)
-//            .flatMapLatest { [unowned self] (email: String, password: String) in
-//                return self.authModel.login(with: email, and: password)
-//        }
-//        return Output(login: login)
-//    }
     
     func transform(input: LoginViewModel.Input) -> LoginViewModel.Output {
+        let state = State()
         let requiredInputs = Observable.combineLatest(input.email, input.password)
         let login = input.trigger.withLatestFrom(requiredInputs)
             .flatMapLatest { email, password in
-                return self.authModel.login(with: email, password: password).do(onNext: { _ in
+                return self.authModel.login(with: email, password: password)
+                    .trackActivity(state.isLoading)
+                    .do(onNext: { _ in
                     self.navigator.toList()
                 },onError: { error in
                     print(error)
                 })
         }
-        return Output(login: login)
+        return Output(login: login, isLoading: state.isLoading.asDriver())
     }
 
 }

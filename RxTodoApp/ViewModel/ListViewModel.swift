@@ -19,11 +19,13 @@ class ListViewModel: ViewModelType {
     
     struct Output {
         let posts: Observable<[Post]>
+        let addTrigger: Driver<Bool>
     }
     
-    let isAnimating = BehaviorRelay<Bool>(value: false)
+    var isAnimating = BehaviorRelay<Bool>(value: false)
 
     private let postModel = PostModel()
+    private let authModel = AuthModel()
     
     func transform(input: ListViewModel.Input) -> ListViewModel.Output {
         let load = input.trigger.flatMap { [unowned self] _ -> Observable<[Post]> in
@@ -35,7 +37,10 @@ class ListViewModel: ViewModelType {
             })
         }
         
-        return Output(posts: load.asObservable())
+        
+        let currentUser = self.authModel.checkLogin().map { _ in true }.asDriver(onErrorJustReturn: false )
+        
+        return Output(posts: load.asObservable(), addTrigger: currentUser)
     }
 
 }

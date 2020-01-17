@@ -18,6 +18,17 @@ class AuthModel {
         self.db = Firestore.firestore()
     }
     
+    func checkLogin() -> Observable<User> {
+        return Observable.create { observer -> Disposable in
+            if let user = Auth.auth().currentUser {
+                observer.onNext(User(email: user.email))
+            } else {
+                observer.onError(Exception.auth)
+        }
+            return Disposables.create()
+        }
+    }
+    
     func signUp(with email: String, and password: String) -> Observable<User> {
         return Observable.create { observer in
             Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
