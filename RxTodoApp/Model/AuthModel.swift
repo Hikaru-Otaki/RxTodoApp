@@ -1,5 +1,5 @@
 //
-//  AuthRepository.swift
+//  AuthModel.swift
 //  RxTodoApp
 //
 //  Created by 大瀧輝 on 2020/01/13.
@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 import RxSwift
 
-class AuthRepository {
+class AuthModel {
     
     func signUp(with email: String, and password: String) -> Observable<User> {
         return Observable.create { observer in

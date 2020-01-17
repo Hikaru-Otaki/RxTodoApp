@@ -39,34 +39,37 @@ class PostModel {
     
     func read() -> Observable<[Post]> {        
         return Observable.create { [unowned self] observer in
-            self.listener = self.db.collection("posts")
-                .order(by: "date")
-                .addSnapshotListener(includeMetadataChanges: true) { snapshot, error in
-                    guard let snap = snapshot else {
-                        print("Error fetching document: \(error!)")
-                        observer.onError(error!)
-                        return
-                    }
-                    for diff in snap.documentChanges {
-                        if diff.type == .added {
-                            print("New data: \(diff.document.data())")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.listener = self.db.collection("posts")
+                    .order(by: "date")
+                    .addSnapshotListener(includeMetadataChanges: true) { snapshot, error in
+                        guard let snap = snapshot else {
+                            print("Error fetching document: \(error!)")
+                            observer.onError(error!)
+                            return
                         }
-                    }
-                    print("Current data: \(snap)")
-                    
-                    var posts: [Post] = []
-                    if !snap.isEmpty {
-                        for item in snap.documents {
-                            let timeStamp: Timestamp = item["date"] as! Timestamp
-                            let date: Date = timeStamp.dateValue()
-                            posts.append(Post(id: item.documentID,
-                                              user: item["user"] as! String,
-                                              content: item["content"] as! String,
-                                              date: date)
-                            )
+                        for diff in snap.documentChanges {
+                            if diff.type == .added {
+                                print("New data: \(diff.document.data())")
+                            }
                         }
-                    }
-                    observer.onNext(posts)
+                        print("Current data: \(snap)")
+                        
+                        var posts: [Post] = []
+                        if !snap.isEmpty {
+                            for item in snap.documents {
+                                let timeStamp: Timestamp = item["date"] as! Timestamp
+                                let date: Date = timeStamp.dateValue()
+                                posts.append(Post(id: item.documentID,
+                                                  user: item["user"] as! String,
+                                                  content: item["content"] as! String,
+                                                  date: date)
+                                )
+                            }
+                        }
+                        observer.onNext(posts)
+                        observer.onCompleted()
+                }
             }
             return Disposables.create()
         }
