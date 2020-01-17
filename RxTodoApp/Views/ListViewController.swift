@@ -36,7 +36,7 @@ class ListViewController: UIViewController {
         let input = ListViewModel.Input(trigger: Observable.just(()))
         let output = listViewModel.transform(input: input)
         
-        listViewModel.isAnimating.bind(to: SVProgressHUD.rx.isAnimating).disposed(by: disposeBag)
+//        listViewModel.isAnimating.bind(to: SVProgressHUD.rx.isAnimating).disposed(by: disposeBag)
                 
         output.posts.bind(to: tableView.rx.items(cellIdentifier: "cell")) {row,element,cell in
             cell.textLabel?.text = element.content
@@ -45,6 +45,8 @@ class ListViewController: UIViewController {
         .disposed(by: disposeBag)
         
         output.addTrigger.drive(addButton.rx.isEnabled).disposed(by: disposeBag)
+        
+        output.isLoading.drive(SVProgressHUD.rx.isAnimating).disposed(by: disposeBag)
     }
     
 }
