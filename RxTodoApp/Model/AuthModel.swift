@@ -44,4 +44,8 @@ class AuthModel {
             return Disposables.create()
         }
     }
+    
+    func signout() {
+        try! Auth.auth().signOut()
+    }
 }

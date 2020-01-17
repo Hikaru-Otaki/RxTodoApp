@@ -38,7 +38,6 @@ class ListViewController: UIViewController {
         let output = listViewModel.transform(input: input)
         
         listViewModel.isAnimating.bind(to: SVProgressHUD.rx.isAnimating).disposed(by: disposeBag)
-//        listViewModel.isAnimating.bind(to: indicatorView.rx.isHidden).disposed(by: disposeBag)
                 
         output.posts.bind(to: tableView.rx.items(cellIdentifier: "cell")) {row,element,cell in
             cell.textLabel?.text = element.content

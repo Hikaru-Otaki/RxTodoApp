@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="frD-8N-cck">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15703"/>
@@ -10,7 +10,7 @@
         <!--List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ListViewController" customModule="RxTodoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="ListViewController" customModule="RxTodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -45,6 +45,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="hrT-pM-Qen"/>
                     <connections>
                         <outlet property="indicatorView" destination="9eJ-0C-Umv" id="OXN-94-BnE"/>
                         <outlet property="tableView" destination="Ssb-xN-P7a" id="w6T-Bw-iDO"/>
@@ -100,6 +101,7 @@
                         <outlet property="emailTextField" destination="pZX-T4-fAQ" id="Fct-uH-8dQ"/>
                         <outlet property="loginButton" destination="A44-Uh-V8S" id="lkR-fC-dmT"/>
                         <outlet property="passwordTextField" destination="pg3-M7-V2J" id="xib-87-3V0"/>
+                        <segue destination="tjT-EC-uvP" kind="show" identifier="toSignup" id="nIa-z2-qjd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8cb-Qv-1f1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -130,6 +132,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D20-11-sD9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1872.4637681159422" y="97.767857142857139"/>
+        </scene>
+        <!--Signup View Controller-->
+        <scene sceneID="yyI-vw-a1a">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="tjT-EC-uvP" customClass="SignupViewController" customModule="RxTodoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="woc-su-0Nm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cVO-ke-Nko">
+                                <rect key="frame" x="106" y="179" width="203" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6oM-Vx-zZo">
+                                <rect key="frame" x="106" y="271" width="203" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="93x-NP-U8N">
+                                <rect key="frame" x="183" y="368" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Signup"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="toList" id="Yvs-hF-nJm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="flN-cm-Pls"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Y4j-wg-eU5"/>
+                    <connections>
+                        <outlet property="emailTextFIeld" destination="cVO-ke-Nko" id="NAJ-8D-a2j"/>
+                        <outlet property="passwordTextField" destination="6oM-Vx-zZo" id="sNp-U1-EVG"/>
+                        <outlet property="signupButton" destination="93x-NP-U8N" id="lGg-5R-k3p"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zgm-Ia-efg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1037.68115942029" y="898.66071428571422"/>
         </scene>
     </scenes>
 </document>

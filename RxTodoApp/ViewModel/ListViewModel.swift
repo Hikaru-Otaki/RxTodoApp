@@ -31,7 +31,7 @@ class ListViewModel: ViewModelType {
             return self.postModel.read().do(onNext: { _ in
                 self.isAnimating.accept(false)
             }, onError: { _ in
-                SVProgressHUD.dismiss()
+                self.isAnimating.accept(false)
             })
         }
         
