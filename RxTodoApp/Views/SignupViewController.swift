@@ -33,7 +33,19 @@ class SignupViewController: UIViewController {
     func bind() {
         let input = SignupViewModel.Input(email: emailTextFIeld.rx.text.orEmpty.asObservable(), password: passwordTextField.rx.text.orEmpty.asObservable(), trigger: signupButton.rx.tap.asObservable())
         let output = signupViewModel.transform(input: input)
-        output.login.subscribe().disposed(by: disposeBag)
+        output.login.subscribe(onError: { _ in
+            self.showLoginErrorAlert()
+        }).disposed(by: disposeBag)
+    }
+    
+    func showLoginErrorAlert() {
+        let alert: UIAlertController = UIAlertController(title: "Login Error", message: "An error has occurred, try one more", preferredStyle:  UIAlertController.Style.alert)
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
+            (action: UIAlertAction!) -> Void in
+            print("OK")
+        })
+        alert.addAction(defaultAction)
+        present(alert, animated: true, completion: nil)
     }
     
 

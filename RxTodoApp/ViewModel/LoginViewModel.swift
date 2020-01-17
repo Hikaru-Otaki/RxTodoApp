@@ -43,7 +43,7 @@ class LoginViewModel: ViewModelType {
         let requiredInputs = Observable.combineLatest(input.email, input.password)
         let login = input.trigger.withLatestFrom(requiredInputs)
             .flatMapLatest { email, password in
-                return self.authModel.login(with: email, and: password).do(onNext: { _ in
+                return self.authModel.login(with: email, password: password).do(onNext: { _ in
                     self.navigator.toList()
                 },onError: { error in
                     print(error)

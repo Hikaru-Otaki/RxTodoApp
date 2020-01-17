@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="frD-8N-cck">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tjT-EC-uvP">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15703"/>
@@ -88,6 +88,11 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYS-gO-tPz">
+                                <rect key="frame" x="261" y="692" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Signup"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -102,6 +107,7 @@
                         <outlet property="loginButton" destination="A44-Uh-V8S" id="lkR-fC-dmT"/>
                         <outlet property="passwordTextField" destination="pg3-M7-V2J" id="xib-87-3V0"/>
                         <segue destination="tjT-EC-uvP" kind="show" identifier="toSignup" id="nIa-z2-qjd"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="toList" id="N0G-Z1-aTk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8cb-Qv-1f1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -177,4 +183,7 @@
             <point key="canvasLocation" x="1037.68115942029" y="898.66071428571422"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Yvs-hF-nJm"/>
+    </inferredMetricsTieBreakers>
 </document>

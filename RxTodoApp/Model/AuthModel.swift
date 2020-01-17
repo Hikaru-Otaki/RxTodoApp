@@ -12,6 +12,12 @@ import RxSwift
 
 class AuthModel {
     
+    let db: Firestore
+    
+    init() {
+        self.db = Firestore.firestore()
+    }
+    
     func signUp(with email: String, and password: String) -> Observable<User> {
         return Observable.create { observer in
             Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
@@ -20,8 +26,9 @@ class AuthModel {
                     observer.onError(e)
                     return
                 }
-                guard let user = user?.user.email else { return }
-                observer.onNext(User(email: user))
+                guard let user = user else { return }
+                self.db.collection("users").addDocument(data: ["email": user.user.email as Any])
+                observer.onNext(User(email: user.user.email))
             }
             return Disposables.create()
         }
