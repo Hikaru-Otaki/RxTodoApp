@@ -207,9 +207,6 @@
                                 <state key="normal" title="Signup">
                                     <color key="titleColor" red="0.0" green="0.66274509800000003" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="toList" id="Yvs-hF-nJm"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.66274509800000003" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -220,6 +217,7 @@
                         <outlet property="emailTextFIeld" destination="cVO-ke-Nko" id="NAJ-8D-a2j"/>
                         <outlet property="passwordTextField" destination="6oM-Vx-zZo" id="sNp-U1-EVG"/>
                         <outlet property="signupButton" destination="93x-NP-U8N" id="lGg-5R-k3p"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="toList" id="7Lq-vH-IuH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zgm-Ia-efg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -231,6 +229,6 @@
         <image name="person.circle" catalog="system" width="64" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="N0G-Z1-aTk"/>
+        <segue reference="7Lq-vH-IuH"/>
     </inferredMetricsTieBreakers>
 </document>

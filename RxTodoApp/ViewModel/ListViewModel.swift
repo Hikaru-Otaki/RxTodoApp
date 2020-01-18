@@ -16,37 +16,53 @@ class ListViewModel: ViewModelType {
    
     struct Input {
         let trigger: Observable<Void>
+        let deleteTrigger: Driver<Int>
     }
     
     struct Output {
         let posts: Observable<[Post]>
         let addTrigger: Driver<Bool>
         let isLoading: Driver<Bool>
+        let deletePost: Driver<Void>
+//        let o: Observable<Void>
     }
     
     struct State {
         let indicator = ActivityIndicator()
-//        let user: Observable<FirebaseAuth.User>
+        var _array = BehaviorRelay<[Post]>(value: [])
     }
-    
+        
     private let postModel = PostModel()
     private let authModel = AuthModel()
+    
     
     func transform(input: ListViewModel.Input) -> ListViewModel.Output {
         let state = State()
         let load = input.trigger.flatMap { [unowned self] _ in
             return self.authModel.checkLogin()
-        }.flatMap { [unowned self] user in
-            return self.postModel.read(uid: user.uid).trackActivity(state.indicator)
+        }.flatMap { [unowned self] _ in
+            return self.postModel.read().trackActivity(state.indicator)
+        }.map { posts -> [Post]in
+            state._array.accept(posts)
+            print(state._array)
+            return posts
         }
-//        let load = input.trigger.flatMap { [unowned self] _ -> Observable<[Post]> in
-//            return self.postModel.read(uid: ).trackActivity(state.indicator)
+                
+//        _ = load.map { (posts) in
+//            self._array.accept(posts)
 //        }
-        
-        
+                
         let currentUser = self.authModel.checkLogin().map { _ in true }.asDriver(onErrorJustReturn: false )
         
-        return Output(posts: load.asObservable(), addTrigger: currentUser, isLoading: state.indicator.asDriver())
+        let delete = input.deleteTrigger.flatMapLatest { index in
+            return self.postModel.delete(state._array.value[index].id).trackActivity(state.indicator).asDriver(onErrorJustReturn: ())
+        }
+        
+//        let a = input.deleteTrigger.map { index -> Void in
+//            print(state._array.value[index].id)
+//        }
+                
+        return Output(posts: load, addTrigger: currentUser, isLoading: state.indicator.asDriver(), deletePost: delete)
     }
 
 }

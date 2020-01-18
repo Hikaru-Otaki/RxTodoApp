@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SVProgressHUD
 
 class SignupViewController: UIViewController {
     
@@ -32,10 +33,14 @@ class SignupViewController: UIViewController {
     
     func bind() {
         let input = SignupViewModel.Input(email: emailTextFIeld.rx.text.orEmpty.asObservable(), password: passwordTextField.rx.text.orEmpty.asObservable(), trigger: signupButton.rx.tap.asObservable())
+        
         let output = signupViewModel.transform(input: input)
+        
         output.login.subscribe(onError: { _ in
             self.showLoginErrorAlert()
         }).disposed(by: disposeBag)
+        
+        output.isLoading.drive(SVProgressHUD.rx.isAnimating).disposed(by: disposeBag)
     }
     
     func showLoginErrorAlert() {

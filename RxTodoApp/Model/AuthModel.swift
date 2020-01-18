@@ -37,9 +37,12 @@ class AuthModel {
                     print(e.localizedDescription)
                     observer.onError(e)
                     return
-                }
+                } 
                 guard let user = user else { return }
-                self.db.collection("users").addDocument(data: ["email": user.user.email as Any])
+                self.db.collection("users").document(user.user.uid).setData([
+                    "email": user.user.email as Any,
+                    "uid"  : user.user.uid
+                ])
                 observer.onNext(User(email: user.user.email))
             }
             return Disposables.create()

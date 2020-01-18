@@ -20,6 +20,11 @@ class SignupViewModel: ViewModelType {
     
     struct Output {
         let login: Observable<User>
+        let isLoading: Driver<Bool>
+    }
+    
+    struct State {
+        let indicator = ActivityIndicator()
     }
     
     private let authModel: AuthModel
@@ -31,15 +36,16 @@ class SignupViewModel: ViewModelType {
     }
     
     func transform(input: SignupViewModel.Input) -> SignupViewModel.Output {
+        let state = State()
         let requiredInputs = Observable.combineLatest(input.email, input.password)
         let login = input.trigger.withLatestFrom(requiredInputs)
             .flatMapLatest { (email: String, password: String) in
                 return self.authModel.signUp(with: email, and: password)
                     .do(onNext: { _ in
                         self.navigator.toList()
-                    })
+                    }).trackActivity(state.indicator)
         }
-        return Output(login: login)
+        return Output(login: login, isLoading: state.indicator.asDriver())
     }
     
 }
