@@ -59,12 +59,14 @@ public class ActivityIndicator : SharedSequenceConvertibleType {
     }
 
     private func increment() {
+        print("increment")
         _lock.lock()
         _relay.accept(_relay.value + 1)
         _lock.unlock()
     }
 
     private func decrement() {
+        print("decrement")
         _lock.lock()
         _relay.accept(_relay.value - 1)
         _lock.unlock()

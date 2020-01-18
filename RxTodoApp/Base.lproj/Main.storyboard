@@ -22,7 +22,7 @@
                                         <barButtonItem key="leftBarButtonItem" image="person.circle" catalog="system" id="GVB-JK-VDB"/>
                                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="XH7-av-X0T">
                                             <connections>
-                                                <segue destination="ULK-fh-6Zw" kind="presentation" id="xdK-MH-WJV"/>
+                                                <segue destination="ULK-fh-6Zw" kind="presentation" id="PPb-Yg-Xo9"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -133,10 +133,10 @@
             </objects>
             <point key="canvasLocation" x="1947.826086956522" y="114.50892857142857"/>
         </scene>
-        <!--View Controller-->
+        <!--Post View Controller-->
         <scene sceneID="Wku-Wp-vTC">
             <objects>
-                <viewController id="ULK-fh-6Zw" customClass="ViewController" customModule="RxTodoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ULK-fh-6Zw" customClass="PostViewController" customModule="RxTodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ukf-Nv-GOV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -172,7 +172,8 @@
                         <viewLayoutGuide key="safeArea" id="03S-Cx-pod"/>
                     </view>
                     <connections>
-                        <outlet property="button" destination="wFb-CZ-9lD" id="BD8-GK-age"/>
+                        <outlet property="postButton" destination="wFb-CZ-9lD" id="Ifc-5A-A7N"/>
+                        <outlet property="textField" destination="nEp-gl-eOz" id="vMz-HP-WL0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D20-11-sD9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

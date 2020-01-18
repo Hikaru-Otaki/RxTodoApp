@@ -52,7 +52,13 @@ class ListViewController: UIViewController {
         }
         .disposed(by: disposeBag)
         
-        output.load.drive().disposed(by: disposeBag)
+        output.load.drive(onNext: { _ in
+            print("success")
+        }, onCompleted: {
+            print("completed")
+        }) {
+            print("disposed")
+        }.disposed(by: disposeBag)
         output.deletePost.drive().disposed(by: disposeBag)
         output.addTrigger.drive(addButton.rx.isEnabled).disposed(by: disposeBag)
         output.isLoading.drive(SVProgressHUD.rx.isAnimating).disposed(by: disposeBag)

@@ -41,8 +41,11 @@ class ListViewModel: ViewModelType {
         let load = input.trigger.flatMap { [unowned self] _ in
             return self.authModel.checkLogin()
         }.flatMap { [unowned self] _ in
-            return self.postModel.read().trackActivity(state.indicator)
-        }.map { state._array.accept($0) }.mapToVoid().asDriverOnErrorJustComplete()
+            return self.postModel.read()
+        }.do(onNext: { posts in
+            state._array.accept(posts)
+        }).mapToVoid().asDriverOnErrorJustComplete()
+           
             
         
         let currentUser = self.authModel.checkLogin().map { _ in true }.asDriver(onErrorJustReturn: false )
