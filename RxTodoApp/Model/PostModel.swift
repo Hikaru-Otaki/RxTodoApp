@@ -41,8 +41,6 @@ class PostModel {
     
     func read() -> Observable<[Post]> {
         return Observable.create { [unowned self] observer in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                print("呼ばれたよ")
                 self.listener = self.db.collection("users").document(self.userUid!).collection("posts")
                     .order(by: "date")
                     .addSnapshotListener() { snapshot, error in
@@ -65,7 +63,6 @@ class PostModel {
                         var posts: [Post] = []
                         if !snap.isEmpty {
                             for item in snap.documents {
-                                print(item.documentID)
                                 let timeStamp: Timestamp = item["date"] as! Timestamp
                                 let date: Date = timeStamp.dateValue()
                                 posts.append(Post(id: item.documentID,
@@ -76,29 +73,11 @@ class PostModel {
                             }
                         }
                         observer.onNext(posts)
-                        observer.onCompleted()
-                }
             }
             return Disposables.create()
         }
     }
-    
-//    func update(_ post: Post) -> Observable<Void> {
-//        return Observable.create { [unowned self] observer in
-//            self.db.collection("posts").document(post.id).updateData([
-//                "content": post.content,
-//                "date": post.date
-//                ]) { error in
-//                if let e = error {
-//                    observer.onError(e)
-//                    return
-//                }
-//                observer.onNext(())
-//            }
-//            return Disposables.create()
-//        }
-//    }
-    
+
     func update(_ post: Post) -> Observable<Void> {
         return Observable.create { [unowned self] observer in
             self.db.collection("users").document(self.userUid!).collection("posts").document(post.id).updateData([
@@ -115,20 +94,7 @@ class PostModel {
         }
     }
     
-//    func delete(_ documentID: String) -> Observable<Void> {
-//        return Observable.create { [unowned self] observer in
-//            self.db.collection("posts").document(documentID).delete() { error in
-//                if let e = error {
-//                    observer.onError(e)
-//                    return
-//                }
-//                observer.onNext(())
-//            }
-//            return Disposables.create()
-//        }
-//    }
     func delete(_ documentID: String) -> Observable<Void> {
-        print(documentID)
         return Observable.create { [unowned self] observer in
             self.db.collection("users").document(self.userUid!).collection("posts").document(documentID).delete() { error in
                 if let e = error {

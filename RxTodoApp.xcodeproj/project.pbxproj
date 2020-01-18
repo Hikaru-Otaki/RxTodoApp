@@ -34,6 +34,7 @@
 		C7820A4B23C896A600982B9C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7820A4A23C896A600982B9C /* Post.swift */; };
 		C7820A4E23C8982900982B9C /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7820A4D23C8982900982B9C /* PostModel.swift */; };
 		C7881C4A23D1C16100F90129 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7881C4923D1C16100F90129 /* LoginViewModel.swift */; };
+		C7BD295F23D33301009C49E4 /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD295E23D33301009C49E4 /* ErrorTracker.swift */; };
 		C7C5DAEB23D0D376003A2AE8 /* SVProgressHUD+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C5DAEA23D0D376003A2AE8 /* SVProgressHUD+Ext.swift */; };
 		C7C5DAF123D18D3F003A2AE8 /* Observable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C5DAF023D18D3F003A2AE8 /* Observable+Ext.swift */; };
 /* End PBXBuildFile section */
@@ -91,6 +92,7 @@
 		C7820A4A23C896A600982B9C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		C7820A4D23C8982900982B9C /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		C7881C4923D1C16100F90129 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		C7BD295E23D33301009C49E4 /* ErrorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
 		C7C5DAEA23D0D376003A2AE8 /* SVProgressHUD+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SVProgressHUD+Ext.swift"; sourceTree = "<group>"; };
 		C7C5DAF023D18D3F003A2AE8 /* Observable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Ext.swift"; sourceTree = "<group>"; };
 		C7E9E24823D2591100D9A896 /* RxTodoApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RxTodoApp.entitlements; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				C7C5DAEA23D0D376003A2AE8 /* SVProgressHUD+Ext.swift */,
 				C7C5DAF023D18D3F003A2AE8 /* Observable+Ext.swift */,
 				C72C651423D205F100A5EC60 /* Error.swift */,
+				C7BD295E23D33301009C49E4 /* ErrorTracker.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 				C72C650D23D1CA5D00A5EC60 /* LoginNavigator.swift in Sources */,
 				C7C5DAEB23D0D376003A2AE8 /* SVProgressHUD+Ext.swift in Sources */,
 				C769258D23CC974A005EE862 /* LoginViewController.swift in Sources */,
+				C7BD295F23D33301009C49E4 /* ErrorTracker.swift in Sources */,
 				C73F12FD23C77928009853E4 /* ListViewController.swift in Sources */,
 				C72C651523D205F100A5EC60 /* Error.swift in Sources */,
 				C72C650F23D1DBF800A5EC60 /* SignupViewController.swift in Sources */,

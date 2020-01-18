@@ -1,19 +1,22 @@
 //
 //  ActivityIndicator.swift
-//  RxTodoApp
+//  RxSwiftUtilities
 //
-//  Created by 大瀧輝 on 2020/01/10.
-//  Copyright © 2020 Hikaru Otaki. All rights reserved.
-
-
+//  Created by Krunoslav Zaher on 10/18/15.
+//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
+//
+//  This file was copied from RxSwift's example app:
+//  https://github.com/ReactiveX/RxSwift/blob/d6dfcfa/RxExample/RxExample/Services/ActivityIndicator.swift
+//
+import Foundation
 import RxSwift
 import RxCocoa
 
-private struct ActivityToken<Element> : ObservableConvertibleType, Disposable {
-    private let _source: Observable<Element>
+private struct ActivityToken<E> : ObservableConvertibleType, Disposable {
+    private let _source: Observable<E>
     private let _dispose: Cancelable
 
-    init(source: Observable<Element>, disposeAction: @escaping () -> Void) {
+    init(source: Observable<E>, disposeAction: @escaping () -> ()) {
         _source = source
         _dispose = Disposables.create(with: disposeAction)
     }
@@ -22,16 +25,16 @@ private struct ActivityToken<Element> : ObservableConvertibleType, Disposable {
         _dispose.dispose()
     }
 
-    func asObservable() -> Observable<Element> {
+    func asObservable() -> Observable<E> {
         return _source
     }
 }
 
 /**
-Enables monitoring of sequence computation.
-If there is at least one sequence computation in progress, `true` will be sent.
-When all activities complete `false` will be sent.
-*/
+ Enables monitoring of sequence computation.
+ If there is at least one sequence computation in progress, `true` will be sent.
+ When all activities complete `false` will be sent.
+ */
 public class ActivityIndicator : SharedSequenceConvertibleType {
     public typealias Element = Bool
     public typealias SharingStrategy = DriverSharingStrategy
@@ -46,8 +49,8 @@ public class ActivityIndicator : SharedSequenceConvertibleType {
             .distinctUntilChanged()
     }
 
-    fileprivate func trackActivityOfObservable<Source: ObservableConvertibleType>(_ source: Source) -> Observable<Source.Element> {
-        return Observable.using({ () -> ActivityToken<Source.Element> in
+    fileprivate func trackActivityOfObservable<O: ObservableConvertibleType>(_ source: O) -> Observable<O.Element> {
+        return Observable.using({ () -> ActivityToken<O.Element> in
             self.increment()
             return ActivityToken(source: source.asObservable(), disposeAction: self.decrement)
         }) { t in

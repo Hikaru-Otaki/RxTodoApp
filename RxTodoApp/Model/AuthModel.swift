@@ -26,7 +26,9 @@ class AuthModel {
             } else {
                 observer.onCompleted()
         }
-            return Disposables.create()
+            return Disposables.create {
+                print("when?")
+            }
         }
     }
     

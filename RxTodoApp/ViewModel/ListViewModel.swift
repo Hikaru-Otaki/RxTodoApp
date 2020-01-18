@@ -20,11 +20,11 @@ class ListViewModel: ViewModelType {
     }
     
     struct Output {
+        let load: Driver<Void>
         let posts: Observable<[Post]>
         let addTrigger: Driver<Bool>
         let isLoading: Driver<Bool>
         let deletePost: Driver<Void>
-//        let o: Observable<Void>
     }
     
     struct State {
@@ -42,27 +42,16 @@ class ListViewModel: ViewModelType {
             return self.authModel.checkLogin()
         }.flatMap { [unowned self] _ in
             return self.postModel.read().trackActivity(state.indicator)
-        }.map { posts -> [Post]in
-            state._array.accept(posts)
-            print(state._array)
-            return posts
-        }
-                
-//        _ = load.map { (posts) in
-//            self._array.accept(posts)
-//        }
-                
+        }.map { state._array.accept($0) }.mapToVoid().asDriverOnErrorJustComplete()
+            
+        
         let currentUser = self.authModel.checkLogin().map { _ in true }.asDriver(onErrorJustReturn: false )
         
         let delete = input.deleteTrigger.flatMapLatest { index in
-            return self.postModel.delete(state._array.value[index].id).trackActivity(state.indicator).asDriver(onErrorJustReturn: ())
+            return self.postModel.delete(state._array.value[index].id).asDriver(onErrorJustReturn: ())
         }
         
-//        let a = input.deleteTrigger.map { index -> Void in
-//            print(state._array.value[index].id)
-//        }
-                
-        return Output(posts: load, addTrigger: currentUser, isLoading: state.indicator.asDriver(), deletePost: delete)
+        return Output(load: load, posts: state._array.asObservable(), addTrigger: currentUser, isLoading: state.indicator.asDriver(), deletePost: delete)
     }
 
 }
