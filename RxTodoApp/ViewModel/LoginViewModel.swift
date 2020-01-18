@@ -44,9 +44,7 @@ class LoginViewModel: ViewModelType {
                     .trackActivity(state.isLoading)
                     .do(onNext: { _ in
                     self.navigator.toList()
-                },onError: { error in
-                    print(error)
-                })
+                    }).catchErrorJustComplete()
         }
         return Output(login: login, isLoading: state.isLoading.asDriver())
     }

@@ -21,17 +21,21 @@ class PostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        bind()
     }
     
     func bind() {
-        let postViewModel = PostViewModel(postModel: PostModel())
+        let postViewModel = PostViewModel(postModel: PostModel(), navigator: PostNavigator(with: self))
         let input = PostViewModel.Input(postTrigger: postButton.rx.tap.asDriver(), content: textField.rx.text.orEmpty.asDriver())
         
         let output = postViewModel.transform(input: input)
         
         output.isLoading.drive(SVProgressHUD.rx.isAnimating).disposed(by: disposeBag)
         output.post.drive().disposed(by: disposeBag)
-        output.postButtonEnabled.drive(postButton.rx.isEnabled).disposed(by: disposeBag)
+        output.postButtonEnabled.drive(onNext: { [unowned self] isValid in
+            self.postButton.isEnabled = isValid
+            self.postButton.alpha = isValid ? 1.0 : 0.5
+        }).disposed(by: disposeBag)
     }
 
 }

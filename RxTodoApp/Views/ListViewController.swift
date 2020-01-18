@@ -22,18 +22,11 @@ class ListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let authModel = AuthModel()
-//        authModel.signout()
-//        if let user = Auth.auth().currentUser {
-//            let s = PostModel()
-//            s.create(with: "first").subscribe().disposed(by: disposeBag)
-//            s.create(with: "second").subscribe().disposed(by: disposeBag)
-//            s.create(with: "third").subscribe().disposed(by: disposeBag)
-//            s.create(with: "fouth").subscribe().disposed(by: disposeBag)
-//            s.create(with: "wow").subscribe().disposed(by: disposeBag)
-//
-//        }
+        initializeTableView()
         
+        tableView
+        .rx.setDelegate(self)
+        .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,27 +34,30 @@ class ListViewController: UIViewController {
         bind()
     }
     
+    func initializeTableView() {
+        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil),forCellReuseIdentifier:"cell")
+        
+    }
+    
     func bind() {
         listViewModel = ListViewModel()
         let input = ListViewModel.Input(trigger: Observable.just(()), deleteTrigger: tableView.rx.itemDeleted.asDriver().map { $0.row })
         let output = listViewModel.transform(input: input)
-                        
-        output.posts.bind(to: tableView.rx.items(cellIdentifier: "cell")) { row, element, cell in
-            cell.textLabel?.text = element.content
-            cell.detailTextLabel?.text = element.id
-        }
-        .disposed(by: disposeBag)
         
-        output.load.drive(onNext: { _ in
-            print("success")
-        }, onCompleted: {
-            print("completed")
-        }) {
-            print("disposed")
+        output.posts.bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: CustomTableViewCell.self)) { row, element, cell in
+            cell.setcell(content: element.content, date: element.date)
         }.disposed(by: disposeBag)
+        
+        output.load.drive().disposed(by: disposeBag)
         output.deletePost.drive().disposed(by: disposeBag)
         output.addTrigger.drive(addButton.rx.isEnabled).disposed(by: disposeBag)
         output.isLoading.drive(SVProgressHUD.rx.isAnimating).disposed(by: disposeBag)
     }
     
+}
+
+extension ListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 106
+    }
 }

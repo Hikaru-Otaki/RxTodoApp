@@ -34,9 +34,7 @@ class LoginViewController: UIViewController {
         
         let output = loginViewModel.transform(input: input)
         
-        output.login.subscribe(onError: { _ in
-            self.showLoginErrorAlert()
-            }).disposed(by: disposeBag)
+        output.login.subscribe().disposed(by: disposeBag)
         
         output.isLoading.drive(SVProgressHUD.rx.isAnimating).disposed(by: disposeBag)
     }

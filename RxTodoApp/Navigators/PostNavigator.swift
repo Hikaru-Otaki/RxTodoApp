@@ -17,7 +17,7 @@ class PostNavigator {
     }
     
     func toPost() {
-        viewController?.performSegue(withIdentifier: "toPost", sender: nil)
+        viewController?.dismiss(animated: true, completion: nil)
     }
 
 }

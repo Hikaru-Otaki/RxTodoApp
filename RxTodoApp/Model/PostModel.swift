@@ -34,6 +34,7 @@ class PostModel {
                     return
                 }
                 observer.onNext(())
+                observer.onCompleted()
             }
             return Disposables.create()
         }

@@ -38,6 +38,8 @@
 		C7BD296123D335B6009C49E4 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD296023D335B6009C49E4 /* PostViewController.swift */; };
 		C7BD296323D3477F009C49E4 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD296223D3477F009C49E4 /* PostViewModel.swift */; };
 		C7BD296523D380F6009C49E4 /* PostNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD296423D380F6009C49E4 /* PostNavigator.swift */; };
+		C7BD296B23D395C6009C49E4 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD296923D395C6009C49E4 /* CustomTableViewCell.swift */; };
+		C7BD296C23D395C6009C49E4 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7BD296A23D395C6009C49E4 /* CustomTableViewCell.xib */; };
 		C7C5DAEB23D0D376003A2AE8 /* SVProgressHUD+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C5DAEA23D0D376003A2AE8 /* SVProgressHUD+Ext.swift */; };
 		C7C5DAF123D18D3F003A2AE8 /* Observable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C5DAF023D18D3F003A2AE8 /* Observable+Ext.swift */; };
 /* End PBXBuildFile section */
@@ -99,6 +101,8 @@
 		C7BD296023D335B6009C49E4 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostViewController.swift; path = RxTodoAppUITests/PostViewController.swift; sourceTree = SOURCE_ROOT; };
 		C7BD296223D3477F009C49E4 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		C7BD296423D380F6009C49E4 /* PostNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostNavigator.swift; sourceTree = "<group>"; };
+		C7BD296923D395C6009C49E4 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		C7BD296A23D395C6009C49E4 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		C7C5DAEA23D0D376003A2AE8 /* SVProgressHUD+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SVProgressHUD+Ext.swift"; sourceTree = "<group>"; };
 		C7C5DAF023D18D3F003A2AE8 /* Observable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Ext.swift"; sourceTree = "<group>"; };
 		C7E9E24823D2591100D9A896 /* RxTodoApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RxTodoApp.entitlements; sourceTree = "<group>"; };
@@ -248,6 +252,7 @@
 		C769258B23CC9709005EE862 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C7BD296623D3958E009C49E4 /* CustomCell */,
 				C73F12FC23C77928009853E4 /* ListViewController.swift */,
 				C769258C23CC974A005EE862 /* LoginViewController.swift */,
 				C72C650E23D1DBF800A5EC60 /* SignupViewController.swift */,
@@ -272,6 +277,15 @@
 				C769258723CC9330005EE862 /* AuthModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C7BD296623D3958E009C49E4 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				C7BD296923D395C6009C49E4 /* CustomTableViewCell.swift */,
+				C7BD296A23D395C6009C49E4 /* CustomTableViewCell.xib */,
+			);
+			path = CustomCell;
 			sourceTree = "<group>";
 		};
 		D0A46511E84135CF4A8002A9 /* Frameworks */ = {
@@ -396,6 +410,7 @@
 				C73F130523C7792A009853E4 /* LaunchScreen.storyboard in Resources */,
 				C7287B3C23C89DD200D8B937 /* GoogleService-Info.plist in Resources */,
 				C73F130223C7792A009853E4 /* Assets.xcassets in Resources */,
+				C7BD296C23D395C6009C49E4 /* CustomTableViewCell.xib in Resources */,
 				C73F130023C77928009853E4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -530,6 +545,7 @@
 				C72C651323D1DD3900A5EC60 /* SignupViewModel.swift in Sources */,
 				C72C650D23D1CA5D00A5EC60 /* LoginNavigator.swift in Sources */,
 				C7C5DAEB23D0D376003A2AE8 /* SVProgressHUD+Ext.swift in Sources */,
+				C7BD296B23D395C6009C49E4 /* CustomTableViewCell.swift in Sources */,
 				C769258D23CC974A005EE862 /* LoginViewController.swift in Sources */,
 				C7BD295F23D33301009C49E4 /* ErrorTracker.swift in Sources */,
 				C73F12FD23C77928009853E4 /* ListViewController.swift in Sources */,

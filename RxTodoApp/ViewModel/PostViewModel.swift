@@ -28,9 +28,11 @@ class PostViewModel: ViewModelType {
     }
     
     private var postModel: PostModel
+    private var navigator: PostNavigator
     
-    init(postModel: PostModel) {
+    init(postModel: PostModel, navigator: PostNavigator) {
         self.postModel = postModel
+        self.navigator = navigator
     }
     
     let validation = Validator()
@@ -39,12 +41,15 @@ class PostViewModel: ViewModelType {
         let state = State()
         let post = input.postTrigger.withLatestFrom(input.content).flatMapLatest { content -> Driver<Void> in
             return self.postModel.create(with: content).trackActivity(state.indicator).asDriver(onErrorJustReturn: ())
+                .do(onNext: { _ in
+                    self.navigator.toPost()
+                })
         }
         
         let result = input.content.map { content in
             self.validation.validateContent(content: content).isValid
         }
-                
+        
         return Output(post: post, postButtonEnabled: result, isLoading: state.indicator.asDriver())
     }
     
