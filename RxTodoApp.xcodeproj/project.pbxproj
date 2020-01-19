@@ -18,7 +18,6 @@
 		C72C651323D1DD3900A5EC60 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72C651223D1DD3900A5EC60 /* SignupViewModel.swift */; };
 		C72C651523D205F100A5EC60 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72C651423D205F100A5EC60 /* Error.swift */; };
 		C73F12F923C77928009853E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F12F823C77928009853E4 /* AppDelegate.swift */; };
-		C73F12FB23C77928009853E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F12FA23C77928009853E4 /* SceneDelegate.swift */; };
 		C73F12FD23C77928009853E4 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F12FC23C77928009853E4 /* ListViewController.swift */; };
 		C73F130023C77928009853E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73F12FE23C77928009853E4 /* Main.storyboard */; };
 		C73F130223C7792A009853E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73F130123C7792A009853E4 /* Assets.xcassets */; };
@@ -42,6 +41,7 @@
 		C7BD296C23D395C6009C49E4 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7BD296A23D395C6009C49E4 /* CustomTableViewCell.xib */; };
 		C7C5DAEB23D0D376003A2AE8 /* SVProgressHUD+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C5DAEA23D0D376003A2AE8 /* SVProgressHUD+Ext.swift */; };
 		C7C5DAF123D18D3F003A2AE8 /* Observable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C5DAF023D18D3F003A2AE8 /* Observable+Ext.swift */; };
+		C7E9C8FF23D3AFA80005F352 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E9C8FE23D3AFA80005F352 /* SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +76,6 @@
 		C72C651423D205F100A5EC60 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		C73F12F523C77928009853E4 /* RxTodoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxTodoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73F12F823C77928009853E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C73F12FA23C77928009853E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C73F12FC23C77928009853E4 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		C73F12FF23C77928009853E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C73F130123C7792A009853E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -105,6 +104,7 @@
 		C7BD296A23D395C6009C49E4 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		C7C5DAEA23D0D376003A2AE8 /* SVProgressHUD+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SVProgressHUD+Ext.swift"; sourceTree = "<group>"; };
 		C7C5DAF023D18D3F003A2AE8 /* Observable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Ext.swift"; sourceTree = "<group>"; };
+		C7E9C8FE23D3AFA80005F352 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = RxTodoApp/SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
 		C7E9E24823D2591100D9A896 /* RxTodoApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RxTodoApp.entitlements; sourceTree = "<group>"; };
 		D0BA77BBF5C69F8211E44985 /* Pods-RxTodoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxTodoApp.debug.xcconfig"; path = "Target Support Files/Pods-RxTodoApp/Pods-RxTodoApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D17841D8E4D0B21AB5FF50AB /* Pods-RxTodoApp-RxTodoAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxTodoApp-RxTodoAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-RxTodoApp-RxTodoAppUITests/Pods-RxTodoApp-RxTodoAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 				C7820A4923C8968F00982B9C /* Entity */,
 				C7287B3D23C8A15000D8B937 /* Utilities */,
 				C73F12F823C77928009853E4 /* AppDelegate.swift */,
-				C73F12FA23C77928009853E4 /* SceneDelegate.swift */,
+				C7E9C8FE23D3AFA80005F352 /* SceneDelegate.swift */,
 				C73F12FE23C77928009853E4 /* Main.storyboard */,
 				C73F130123C7792A009853E4 /* Assets.xcassets */,
 				C73F130323C7792A009853E4 /* LaunchScreen.storyboard */,
@@ -558,8 +558,8 @@
 				C7BD296523D380F6009C49E4 /* PostNavigator.swift in Sources */,
 				C7881C4A23D1C16100F90129 /* LoginViewModel.swift in Sources */,
 				C73F12F923C77928009853E4 /* AppDelegate.swift in Sources */,
-				C73F12FB23C77928009853E4 /* SceneDelegate.swift in Sources */,
 				C769258A23CC93E1005EE862 /* User.swift in Sources */,
+				C7E9C8FF23D3AFA80005F352 /* SceneDelegate.swift in Sources */,
 				C7BD296323D3477F009C49E4 /* PostViewModel.swift in Sources */,
 				C769258823CC9331005EE862 /* AuthModel.swift in Sources */,
 				C7287B3F23C8A19900D8B937 /* ActivityIndicator.swift in Sources */,

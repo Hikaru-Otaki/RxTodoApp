@@ -19,19 +19,18 @@ enum Exception: Error {
 enum ValidationResult {
     case ok(message: String)
     case empty(message: String)
-    case validating
     case failed(message: String)
+    
 
     var description: String {
         switch self {
         case let .ok(message) : return message
         case let .empty(message) : return message
-        case .validating : return ""
         case let .failed(message) : return message
         }
     }
 
-    var isValid: Bool {
+    var isEnabled: Bool {
         switch self {
         case .ok:
             return true
@@ -40,3 +39,32 @@ enum ValidationResult {
         }
     }
 }
+
+class Validator {
+    let maxContentCount = 10
+    let minContentCount = 1
+    
+    func validateContent(content: String) -> ValidationResult {
+        if content.count < minContentCount {
+            return .empty(message: "empty")
+        }
+        
+        if content.count > maxContentCount {
+            return .failed(message: "too much")
+        }
+        return .ok(message: "ok")
+    }
+    
+    func validateUserName(username: String) -> ValidationResult {
+        if username.count <= minContentCount {
+            return .empty(message: "empty")
+        }
+        
+        if  username.count >= maxContentCount {
+            return .failed(message: "too much")
+        }
+        return .ok(message: "ok")
+    }
+    
+}
+

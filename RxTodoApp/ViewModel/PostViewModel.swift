@@ -29,14 +29,14 @@ class PostViewModel: ViewModelType {
     
     private var postModel: PostModel
     private var navigator: PostNavigator
+    private var validation: Validator
     
-    init(postModel: PostModel, navigator: PostNavigator) {
+    init(postModel: PostModel, navigator: PostNavigator, validator: Validator) {
         self.postModel = postModel
         self.navigator = navigator
+        self.validation = validator
     }
     
-    let validation = Validator()
-
     func transform(input: PostViewModel.Input) -> PostViewModel.Output {
         let state = State()
         let post = input.postTrigger.withLatestFrom(input.content).flatMapLatest { content -> Driver<Void> in
@@ -47,7 +47,7 @@ class PostViewModel: ViewModelType {
         }
         
         let result = input.content.map { content in
-            self.validation.validateContent(content: content).isValid
+            self.validation.validateContent(content: content).isEnabled
         }
         
         return Output(post: post, postButtonEnabled: result, isLoading: state.indicator.asDriver())
@@ -55,18 +55,3 @@ class PostViewModel: ViewModelType {
     
 }
 
-class Validator {
-    let maxContentCount = 9
-    let minContentCount = 1
-    
-    func validateContent(content: String) -> ValidationResult {
-        if content.count < minContentCount {
-            return .failed(message: "message")
-        }
-        
-        if content.count > maxContentCount {
-            return .failed(message: "messege")
-        }
-        return .ok(message: "ok")
-    }
-}

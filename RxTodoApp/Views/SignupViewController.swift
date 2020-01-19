@@ -15,6 +15,7 @@ class SignupViewController: UIViewController {
     
     @IBOutlet weak var emailTextFIeld: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var signupButton: UIButton!
     
     var signupViewModel: SignupViewModel!
@@ -28,11 +29,11 @@ class SignupViewController: UIViewController {
     }
     
     func initializeViewModel() {
-        self.signupViewModel = SignupViewModel(authModel: AuthModel(), navigator: SignupNavigator(with: self))
+        self.signupViewModel = SignupViewModel(authModel: AuthModel(), navigator: SignupNavigator(with: self), validation: Validator())
     }
     
     func bind() {
-        let input = SignupViewModel.Input(email: emailTextFIeld.rx.text.orEmpty.asObservable(), password: passwordTextField.rx.text.orEmpty.asObservable(), trigger: signupButton.rx.tap.asObservable())
+        let input = SignupViewModel.Input(username: usernameTextField.rx.text.orEmpty.asDriver(), email: emailTextFIeld.rx.text.orEmpty.asDriver(), password: passwordTextField.rx.text.orEmpty.asDriver(), trigger: signupButton.rx.tap.asObservable())
         
         let output = signupViewModel.transform(input: input)
         
@@ -41,6 +42,11 @@ class SignupViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         output.isLoading.drive(SVProgressHUD.rx.isAnimating).disposed(by: disposeBag)
+        output.signinButtonEnabled.drive(onNext: { isEnabled in
+            print(isEnabled)
+            self.signupButton.isEnabled = isEnabled
+            self.signupButton.alpha = isEnabled ? 1.0 : 0.5
+            }).disposed(by: disposeBag)
     }
     
     func showLoginErrorAlert() {

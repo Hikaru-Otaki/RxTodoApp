@@ -16,6 +16,7 @@ class ListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: UIBarButtonItem!
+    @IBOutlet weak var navBar: UINavigationBar!
     
     var listViewModel: ListViewModel!
     let disposeBag = DisposeBag()
@@ -23,10 +24,7 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeTableView()
-        
-        tableView
-        .rx.setDelegate(self)
-        .disposed(by: disposeBag)
+        initializeUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,9 +32,17 @@ class ListViewController: UIViewController {
         bind()
     }
     
+    func initializeUI() {
+        navBar.clipsToBounds = true
+        navBar.layer.borderWidth = 5
+        navBar.layer.borderColor = CGColor(srgbRed: 0, green: 169, blue: 157, alpha: 100)
+    }
+    
     func initializeTableView() {
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil),forCellReuseIdentifier:"cell")
-        
+        tableView
+        .rx.setDelegate(self)
+        .disposed(by: disposeBag)
     }
     
     func bind() {

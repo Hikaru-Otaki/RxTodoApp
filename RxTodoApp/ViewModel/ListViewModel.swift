@@ -45,8 +45,6 @@ class ListViewModel: ViewModelType {
         }.do(onNext: { posts in
             state._array.accept(posts)
         }).mapToVoid().asDriverOnErrorJustComplete()
-           
-            
         
         let currentUser = self.authModel.checkLogin().map { _ in true }.asDriver(onErrorJustReturn: false )
         

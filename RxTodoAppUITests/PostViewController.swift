@@ -25,7 +25,7 @@ class PostViewController: UIViewController {
     }
     
     func bind() {
-        let postViewModel = PostViewModel(postModel: PostModel(), navigator: PostNavigator(with: self))
+        let postViewModel = PostViewModel(postModel: PostModel(), navigator: PostNavigator(with: self), validator: Validator())
         let input = PostViewModel.Input(postTrigger: postButton.rx.tap.asDriver(), content: textField.rx.text.orEmpty.asDriver())
         
         let output = postViewModel.transform(input: input)
