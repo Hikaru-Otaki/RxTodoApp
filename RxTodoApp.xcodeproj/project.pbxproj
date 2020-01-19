@@ -42,6 +42,8 @@
 		C7C5DAEB23D0D376003A2AE8 /* SVProgressHUD+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C5DAEA23D0D376003A2AE8 /* SVProgressHUD+Ext.swift */; };
 		C7C5DAF123D18D3F003A2AE8 /* Observable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C5DAF023D18D3F003A2AE8 /* Observable+Ext.swift */; };
 		C7E9C8FF23D3AFA80005F352 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E9C8FE23D3AFA80005F352 /* SceneDelegate.swift */; };
+		C7E9C90123D4BF7F0005F352 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E9C90023D4BF7F0005F352 /* EditProfileViewController.swift */; };
+		C7E9C90323D4C7E70005F352 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E9C90223D4C7E70005F352 /* EditProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,8 @@
 		C7C5DAEA23D0D376003A2AE8 /* SVProgressHUD+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SVProgressHUD+Ext.swift"; sourceTree = "<group>"; };
 		C7C5DAF023D18D3F003A2AE8 /* Observable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Ext.swift"; sourceTree = "<group>"; };
 		C7E9C8FE23D3AFA80005F352 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = RxTodoApp/SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
+		C7E9C90023D4BF7F0005F352 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		C7E9C90223D4C7E70005F352 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		C7E9E24823D2591100D9A896 /* RxTodoApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RxTodoApp.entitlements; sourceTree = "<group>"; };
 		D0BA77BBF5C69F8211E44985 /* Pods-RxTodoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxTodoApp.debug.xcconfig"; path = "Target Support Files/Pods-RxTodoApp/Pods-RxTodoApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D17841D8E4D0B21AB5FF50AB /* Pods-RxTodoApp-RxTodoAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxTodoApp-RxTodoAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-RxTodoApp-RxTodoAppUITests/Pods-RxTodoApp-RxTodoAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -233,6 +237,7 @@
 				C7881C4923D1C16100F90129 /* LoginViewModel.swift */,
 				C72C651223D1DD3900A5EC60 /* SignupViewModel.swift */,
 				C7BD296223D3477F009C49E4 /* PostViewModel.swift */,
+				C7E9C90223D4C7E70005F352 /* EditProfileViewModel.swift */,
 				C74F0A0F23D031C700A59CED /* ViewModelType.swift */,
 			);
 			path = ViewModel;
@@ -257,6 +262,7 @@
 				C769258C23CC974A005EE862 /* LoginViewController.swift */,
 				C72C650E23D1DBF800A5EC60 /* SignupViewController.swift */,
 				C7BD296023D335B6009C49E4 /* PostViewController.swift */,
+				C7E9C90023D4BF7F0005F352 /* EditProfileViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -539,6 +545,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7E9C90123D4BF7F0005F352 /* EditProfileViewController.swift in Sources */,
 				C7C5DAF123D18D3F003A2AE8 /* Observable+Ext.swift in Sources */,
 				C74F0A1023D031C700A59CED /* ViewModelType.swift in Sources */,
 				C74F0A0D23D0148E00A59CED /* ListViewModel.swift in Sources */,
@@ -562,6 +569,7 @@
 				C7E9C8FF23D3AFA80005F352 /* SceneDelegate.swift in Sources */,
 				C7BD296323D3477F009C49E4 /* PostViewModel.swift in Sources */,
 				C769258823CC9331005EE862 /* AuthModel.swift in Sources */,
+				C7E9C90323D4C7E70005F352 /* EditProfileViewModel.swift in Sources */,
 				C7287B3F23C8A19900D8B937 /* ActivityIndicator.swift in Sources */,
 				C7820A4B23C896A600982B9C /* Post.swift in Sources */,
 			);

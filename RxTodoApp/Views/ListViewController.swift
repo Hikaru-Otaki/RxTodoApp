@@ -16,6 +16,7 @@ class ListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: UIBarButtonItem!
+    @IBOutlet weak var editProfileButton: UIBarButtonItem!
     @IBOutlet weak var navBar: UINavigationBar!
     
     var listViewModel: ListViewModel!
@@ -56,7 +57,10 @@ class ListViewController: UIViewController {
         
         output.load.drive().disposed(by: disposeBag)
         output.deletePost.drive().disposed(by: disposeBag)
-        output.addTrigger.drive(addButton.rx.isEnabled).disposed(by: disposeBag)
+        output.addTrigger.drive(onNext: { [unowned self] isEnabled in
+            self.addButton.isEnabled = isEnabled
+            self.editProfileButton.isEnabled = isEnabled
+            }).disposed(by: disposeBag)
         output.isLoading.drive(SVProgressHUD.rx.isAnimating).disposed(by: disposeBag)
     }
     

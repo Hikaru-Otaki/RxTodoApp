@@ -7,23 +7,23 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Edit Profile View Controller-->
         <scene sceneID="VWg-zY-tc3">
             <objects>
-                <viewController id="xOx-lH-Bc5" sceneMemberID="viewController">
+                <viewController id="xOx-lH-Bc5" customClass="EditProfileViewController" customModule="RxTodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ImW-xo-KiF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="e1N-1V-iLx">
-                                <rect key="frame" x="147" y="234.5" width="120" height="119"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="e1N-1V-iLx">
+                                <rect key="frame" x="132" y="204.5" width="150" height="149"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="wvj-rC-sl3"/>
-                                    <constraint firstAttribute="height" constant="120" id="xeY-nl-hfu"/>
+                                    <constraint firstAttribute="width" constant="150" id="wvj-rC-sl3"/>
+                                    <constraint firstAttribute="height" constant="150" id="xeY-nl-hfu"/>
                                 </constraints>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="SRC-XD-MPp" appends="YES" id="8p2-CQ-hrt"/>
+                                    <outletCollection property="gestureRecognizers" destination="Ihy-Dg-mJD" appends="YES" id="uVQ-ct-IXb"/>
                                 </connections>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="UserName" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Suw-Se-zoe">
@@ -62,9 +62,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pma-LA-TKm"/>
                     </view>
+                    <connections>
+                        <outlet property="efitUsernameTextField" destination="Suw-Se-zoe" id="qgJ-yP-3aq"/>
+                        <outlet property="profileImageView" destination="e1N-1V-iLx" id="HJ7-9y-3iL"/>
+                        <outlet property="saveButton" destination="f8d-Gq-Syr" id="HaU-uc-vHS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R8R-Dy-md7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="SRC-XD-MPp"/>
+                <tapGestureRecognizer id="Ihy-Dg-mJD">
+                    <connections>
+                        <action selector="pickImage:" destination="xOx-lH-Bc5" id="ojf-Md-PuH"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="941" y="915"/>
         </scene>
@@ -130,6 +139,7 @@
                     <navigationItem key="navigationItem" id="hrT-pM-Qen"/>
                     <connections>
                         <outlet property="addButton" destination="XH7-av-X0T" id="JdK-9V-nqB"/>
+                        <outlet property="editProfileButton" destination="GVB-JK-VDB" id="GWl-qO-vdN"/>
                         <outlet property="navBar" destination="kau-UY-FTG" id="GgK-1v-qQR"/>
                         <outlet property="tableView" destination="Ssb-xN-P7a" id="w6T-Bw-iDO"/>
                     </connections>

@@ -42,8 +42,7 @@ class SignupViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         output.isLoading.drive(SVProgressHUD.rx.isAnimating).disposed(by: disposeBag)
-        output.signinButtonEnabled.drive(onNext: { isEnabled in
-            print(isEnabled)
+        output.signinButtonEnabled.drive(onNext: { [unowned self] isEnabled in
             self.signupButton.isEnabled = isEnabled
             self.signupButton.alpha = isEnabled ? 1.0 : 0.5
             }).disposed(by: disposeBag)

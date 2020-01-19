@@ -69,6 +69,10 @@ class AuthModel {
         }
     }
     
+    func updateUser() {
+        self.db.collection("users").
+    }
+    
     func signout() {
         try! Auth.auth().signOut()
     }

@@ -7,7 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 struct User {
-    var email: String?
+    var username: String
+    var email: String
+    var id: String
+    var profileImage: UIImage?
 }
