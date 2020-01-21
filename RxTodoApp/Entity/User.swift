@@ -13,5 +13,5 @@ struct User {
     var username: String
     var email: String
     var id: String
-    var profileImage: UIImage?
+    var profileImage: String?
 }

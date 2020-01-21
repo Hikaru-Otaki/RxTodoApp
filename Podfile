@@ -8,6 +8,7 @@ target 'RxTodoApp' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
+  pod 'FirebaseUI/Storage'
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'SVProgressHUD'

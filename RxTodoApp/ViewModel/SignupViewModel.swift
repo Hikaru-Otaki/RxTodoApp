@@ -41,11 +41,11 @@ class SignupViewModel: ViewModelType {
     
     func transform(input: SignupViewModel.Input) -> SignupViewModel.Output {
         let state = State()
-        let requiredInputs = Driver.combineLatest(input.email, input.password)
+        let requiredInputs = Driver.combineLatest(input.email, input.password, input.username)
         
         let login = input.trigger.withLatestFrom(requiredInputs)
-            .flatMapLatest { (email: String, password: String) in
-                return self.authModel.signUp(with: email, and: password)
+            .flatMapLatest { (email: String, password: String, username: String) in
+                return self.authModel.signUp(username: username, email: email, password: password)
                     .do(onNext: { _ in
                         self.navigator.toList()
                     }).trackActivity(state.indicator).catchErrorJustComplete()
@@ -66,7 +66,6 @@ class SignupViewModel: ViewModelType {
         let passwordValidation = input.password.map { password in
             self.validation.validateUserName(username: password)
         }.map { result -> Bool in
-//            print(result.isEnabled)
             return result.isEnabled
         }
         

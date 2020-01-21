@@ -17,7 +17,7 @@ class ListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var editProfileButton: UIBarButtonItem!
-    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var navItem: UINavigationItem!
     
     var listViewModel: ListViewModel!
     let disposeBag = DisposeBag()
@@ -25,18 +25,17 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeTableView()
-        initializeUI()
+        navigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         bind()
+        navigationBar()
     }
     
-    func initializeUI() {
-        navBar.clipsToBounds = true
-        navBar.layer.borderWidth = 5
-        navBar.layer.borderColor = CGColor(srgbRed: 0, green: 169, blue: 157, alpha: 100)
+    func navigationBar() {
+        navItem.title = "fff"
     }
     
     func initializeTableView() {
@@ -62,6 +61,10 @@ class ListViewController: UIViewController {
             self.editProfileButton.isEnabled = isEnabled
             }).disposed(by: disposeBag)
         output.isLoading.drive(SVProgressHUD.rx.isAnimating).disposed(by: disposeBag)
+        output.userState.bind { [unowned self] user in
+            self.navItem.title = "\(user.username)'s Todo"
+        }.disposed(by: disposeBag)
+        output.test.subscribe().disposed(by: disposeBag)
     }
     
 }
@@ -69,5 +72,17 @@ class ListViewController: UIViewController {
 extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 106
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let editAction = UIContextualAction(style: .normal,
+                                            title:  "Edit",
+                                            handler: { (action: UIContextualAction, view: UIView, success :(Bool) -> Void) in
+                                                success(true)
+        })
+        editAction.image = UIImage(named: "edit")
+        editAction.backgroundColor = .yellow
+        
+        return UISwipeActionsConfiguration(actions: [editAction])
     }
 }

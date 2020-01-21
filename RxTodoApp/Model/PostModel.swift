@@ -58,6 +58,10 @@ class PostModel {
                             if diff.type == .removed {
                                 print("Removed data: \(diff.document.data())")
                             }
+                            
+                            if diff.type == .modified {
+                                print("Modified data: \(diff.document.data())")
+                            }
                         }
                         print("Current data: \(snap)")
                         

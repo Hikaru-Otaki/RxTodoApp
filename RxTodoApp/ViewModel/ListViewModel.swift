@@ -25,11 +25,14 @@ class ListViewModel: ViewModelType {
         let addTrigger: Driver<Bool>
         let isLoading: Driver<Bool>
         let deletePost: Driver<Void>
+        let userState: Observable<User>
+        let test: Observable<Void>
     }
     
     struct State {
         let indicator = ActivityIndicator()
         var _array = BehaviorRelay<[Post]>(value: [])
+        var userState = PublishRelay<User>()
     }
         
     private let postModel = PostModel()
@@ -46,13 +49,19 @@ class ListViewModel: ViewModelType {
             state._array.accept(posts)
         }).mapToVoid().asDriverOnErrorJustComplete()
         
+        let user = input.trigger.flatMap { [unowned self] _ in
+            return self.authModel.getUser()
+        }.map { user in
+            return state.userState.accept(user)
+        }
+        
         let currentUser = self.authModel.checkLogin().map { _ in true }.asDriver(onErrorJustReturn: false )
         
         let delete = input.deleteTrigger.flatMapLatest { index in
             return self.postModel.delete(state._array.value[index].id).asDriver(onErrorJustReturn: ())
         }
         
-        return Output(load: load, posts: state._array.asObservable(), addTrigger: currentUser, isLoading: state.indicator.asDriver(), deletePost: delete)
+        return Output(load: load, posts: state._array.asObservable(), addTrigger: currentUser, isLoading: state.indicator.asDriver(), deletePost: delete, userState: state.userState.asObservable(), test: user)
     }
 
 }
