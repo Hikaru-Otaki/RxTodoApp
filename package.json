@@ -1,0 +1,12 @@
+{
+  "name": "RxTodoApp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Hikaru-Otaki/RxTodoApp.git",
+  "author": "Hikaru <hikaru.11.oth@icloud.com>",
+  "license": "MIT",
+  "dependencies": {
+    "firebase-admin": "^8.9.2",
+    "firebase-tools": "^7.12.1"
+  }
+}

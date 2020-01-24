@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SVProgressHUD
-import Firebase
+import FirebaseUI
 
 class ListViewController: UIViewController {
     
@@ -25,17 +25,11 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeTableView()
-        navigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         bind()
-        navigationBar()
-    }
-    
-    func navigationBar() {
-        navItem.title = "fff"
     }
     
     func initializeTableView() {
@@ -77,8 +71,14 @@ extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let editAction = UIContextualAction(style: .normal,
                                             title:  "Edit",
-                                            handler: { (action: UIContextualAction, view: UIView, success :(Bool) -> Void) in
+                                            handler: {
+                                                (action: UIContextualAction, view: UIView, success :(Bool) -> Void) in
                                                 success(true)
+                                                print("tap")
+                                                self.listViewModel = ListViewModel()
+                                                
+//                                                listViewModel.transform(input: input)
+                                                
         })
         editAction.image = UIImage(named: "edit")
         editAction.backgroundColor = .yellow
